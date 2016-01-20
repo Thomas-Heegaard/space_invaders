@@ -10,5 +10,7 @@
 #define MAX_PROJECTIES 10
 #define MAX_ENTITIES 30
 
+#define PLAYER_START_X 10
+#define PLAYER_START_Y 19
 
 #endif //SETTINGS_H
