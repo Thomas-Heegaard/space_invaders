@@ -6,7 +6,7 @@ typedef struct Entity
     int x;
     int y;
     char ship; //appearance
+    void *(nextPos)(int*, int*);
 }Entity;
-
 
 #endif //PLAYER_H

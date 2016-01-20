@@ -6,7 +6,9 @@
 #define SCENE_HEIGHT 20
 #define SCENE_WIDTH 20
 
-#define MAX_ENEMIES 5
+#define MAX_ENEMIES 10
+#define MAX_PROJECTIES 10
+#define MAX_ENTITIES 30
 
 
 #endif //SETTINGS_H
