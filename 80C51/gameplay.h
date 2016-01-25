@@ -1,6 +1,7 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 #include "entity.h"
+#include "settings.h"
 
 typedef struct Gameplay_T
 {

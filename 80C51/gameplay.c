@@ -2,20 +2,29 @@
 void CheckCollision(int entity, Gameplay_T* game)
 {
     int i;
-    int entity_x = game->entities[entity]->x;
-    int entity_y = game->entities[entity]->y;
+    int entity_x = game->entities[entity].x;
+    int entity_y = game->entities[entity].y;
     for(i = 0; i < game->nb_entities; i++)
     {
-        if(game->entities[i]->x == entity_x ||
-            game->entities[i]->y == entity_y)
+        if(game->entities[i].x == entity_x ||
+            game->entities[i].y == entity_y)
         {
-            if(game->entities[i]->state == ENT_STATE_OK)
-                game->entities[i]->state = ENT_STATE_COLLIDED;
-            if(game->entities[entity]->state == ENT_STATE_OK)
-                game->entities[entity]->state = ENT_STATE_COLLIDED;
+            if(game->entities[i].state == ENT_STATE_OK)
+                game->entities[i].state = ENT_STATE_COLLIDED;
+            if(game->entities[entity].state == ENT_STATE_OK)
+                game->entities[entity].state = ENT_STATE_COLLIDED;
         }
 
     }
+}
+
+void SlideEntityLeft(Gameplay_T* game, int i)
+{
+    game->entities[i].x = game->entities[i + 1].x;
+    game->entities[i].y = game->entities[i + 1].y;
+    game->entities[i].type = game->entities[i + 1].type;
+    game->entities[i].state = game->entities[i + 1].state;
+    game->entities[i].nextPos = game->entities[i + 1].nextPos;
 }
 
 char Main_Loop(Gameplay_T* game)
@@ -28,26 +37,24 @@ char Main_Loop(Gameplay_T* game)
 
         //Remove destroyed entities
         for(i = 0; i < game->nb_entities; i++)
-            if(game->enties[i]->type == /*EXPLOSION CHAR*/)
+            if(game->entities[i].type == EXPLOSION_CHAR)
             {
                 game->entities--;
                 for(j = i; j < game->nb_entities; j++)
-                    game->entities[j] = game->entities[j+1];
+                    SlideEntityLeft(game, j);
             }
 
 
         //Update positions and check for collisions
         for(i = 0; i < game->nb_entities; i++)
-            game->entities[i]->nextPos(entities + i);
+            game->entities[i].nextPos(game->entities + i);
             CheckCollision(i, game);
 
         //Handle collisions
         for(i = 0; i < game->nb_entities; i++)
-            if(game->entities[i]->state == ENT_STATE_COLLIDED)
-            {
-                game->entites[i]->state == ENT_STATE_EXPLODING;
-                game->entites[i]->type == /*EXPLOSION CHAR*/;
-            }
+            if(game->entities[i].state == ENT_STATE_COLLIDED)
+                game->entities[i].type == EXPLOSION_CHAR;
+//Insert gamplay logic here
 
         //exit if game state was updated by a collision (ex. player destroyed)
         if(game->state != 0)
@@ -57,7 +64,7 @@ char Main_Loop(Gameplay_T* game)
         if(game->next_shot == 0)
         {
             game->nb_entities++;
-            InitProjectileUp(game->entities[nb_entities], game->entities[game->player]->x, game->entities[game->player]->y - 1)
+            InitProjectileUp(game->entities[nb_entities], game->entities[game->player].x, game->entities[game->player].y - 1);
             game->next_shot = game->shot_delay;
         }
         else

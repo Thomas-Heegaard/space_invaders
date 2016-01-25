@@ -12,7 +12,7 @@ typedef struct Entity
     int y;
     char type; //appearance
     char state;
-    void (*nextPos)(struct Entity*);
+    void (*nextPos)(struct Entity*) reentrant;
 }Entity;
 
 
