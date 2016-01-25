@@ -1,5 +1,8 @@
-
-int main()
+#include <mcs51reg.h>
+#include "gameplay.h"
+#include "stdio-t6963c.h"
+void main()
 {
-    return 0;
+	STDIO_initialize();
+    while(1);
 }

@@ -1,4 +1,6 @@
 #include "gameplay.h"
+#include "scene.h"
+
 void CheckCollision(int entity, Gameplay_T* game)
 {
     int i;

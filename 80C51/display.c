@@ -1,4 +1,5 @@
 #include "display.h"
+#include "stdio-t6963c.h"
 
 void ClearDisplayBuffer(Gameplay_T* game)
 {
