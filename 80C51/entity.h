@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #define ENT_STATE_OK 0
+#define ENT_STATE_COLLIDED 1
 
 typedef struct Entity
 {
@@ -11,5 +12,6 @@ typedef struct Entity
     char state;
     void *(nextPos)(struct Entity*);
 }Entity;
+
 
 #endif //ENTITY_H

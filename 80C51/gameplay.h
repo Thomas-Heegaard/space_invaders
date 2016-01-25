@@ -9,9 +9,6 @@ typedef struct Gameplay_T
     Entity entities[MAX_ENTITIES];
     int nb_entities;
 
-    Entity collision_buffer[MAX_ENTITIES];
-    int nb_collision_buffer_entities;
-    
     char state;
 
     int player; //index of player in entities
