@@ -2,10 +2,10 @@
 #define DISPLAY_H
 
 #include "settings.h"
+#include "gameplay.h"
 
+void ClearDisplayBuffer(Gameplay_T* game);
 
-void ClearDisplayBuffer(char** display_buffer);
-
-void PushDisplayBuffer(char** display_buffer);
+void PushDisplayBuffer(Gameplay_T* game);
 
 #endif //DISPLAY_H

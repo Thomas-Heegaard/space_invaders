@@ -1,5 +1,5 @@
 #include "gameplay.h"
-#include "scene.h"
+#include "display.h"
 
 void CheckCollision(int entity, Gameplay_T* game)
 {
@@ -35,7 +35,7 @@ char Main_Loop(Gameplay_T* game)
     while(1)
     {
         //Clear display buffer
-        ClearDisplayBuffer(game->display_buffer);
+        ClearDisplayBuffer(game);
 
         //Remove destroyed entities
         for(i = 0; i < game->nb_entities; i++)
@@ -78,7 +78,7 @@ char Main_Loop(Gameplay_T* game)
             game->display_buffer[game->entities[i].x][game->entities[i].y] = game->entities[i].type;
 
         //Draw board to screen
-        PushDisplayBuffer(game->display_buffer);
+        PushDisplayBuffer(game);
 
         //exit if game state was updated by a collision (ex. player destroyed)
         if(game->state != 0)

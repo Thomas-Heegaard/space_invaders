@@ -15,5 +15,10 @@ typedef struct Entity
     void (*nextPos)(struct Entity*) reentrant;
 }Entity;
 
+char InitPlayer(Entity* player, int x, int y);
+
+char InitProjectileUp(Entity* projectile, int x, int y);
+
+char InitProjectileDown(Entity* projectile, int x, int y);
 
 #endif //ENTITY_H
