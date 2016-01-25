@@ -1,12 +1,15 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ENTITY_H
+#define ENTITY_H
+
+#define ENT_STATE_OK 0
 
 typedef struct Entity
 {
     int x;
     int y;
-    char ship; //appearance
-    void *(nextPos)(int*, int*);
+    char type; //appearance
+    char state;
+    void *(nextPos)(struct Entity*);
 }Entity;
 
-#endif //PLAYER_H
+#endif //ENTITY_H
