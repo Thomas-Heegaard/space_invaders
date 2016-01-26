@@ -5,7 +5,7 @@
 void CheckCollision(int i, Gameplay_T* game)
 {
     int j;
-    for(j = 0; j < game->nb_entities; j++)
+    for(j = i + 1; j < game->nb_entities; j++)
     {
         if(game->entities[j].x == game->entities[i].x ||
             game->entities[j].y == game->entities[i].y)
@@ -45,17 +45,17 @@ void CheckBounds(int* i, Gameplay_T* game)
         return;
     }
 
-    if(game->entities[*i].y > SCENE_HEIGHT)
+    if(game->entities[*i].y >= SCENE_HEIGHT)
     {
-        game->entities[*i].y = SCENE_HEIGHT;
+        game->entities[*i].y = SCENE_HEIGHT - 1;
         game->entities[*i].type = EXPLOSION_CHAR;
     }
 
     if(game->entities[*i].x < 0)
         game->entities[*i].x = 0;
 
-    if(game->entities[*i].x > SCENE_WIDTH)
-        game->entities[*i].x = SCENE_WIDTH;
+    if(game->entities[*i].x >= SCENE_WIDTH)
+        game->entities[*i].x = SCENE_WIDTH - 1;
 }
 
 
@@ -83,12 +83,12 @@ char MainLoop(Gameplay_T* game)
             CheckBounds(&i, game);
         }
 
-        //Handle collisions
+        game->LevelLogic(game);
+
+        //Handle remaining collisions (player and bunker collisions should be handle in level logic)
         for(i = 0; i < game->nb_entities; i++)
             if(game->entities[i].state == ENT_STATE_COLLIDED)
                 game->entities[i].type == EXPLOSION_CHAR;
-
-        game->LevelLogic(game);
 
         //Fill display buffer
         for(i = 0; i < game->nb_entities; i++)
