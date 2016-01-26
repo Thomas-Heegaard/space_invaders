@@ -26,11 +26,11 @@ void RemoveEntity(int* i, Gameplay_T* game)
     game->nb_entities--;
     for(j = *i; j < game->nb_entities; j++)
     {
-        game->entities[*i].x = game->entities[*i + 1].x;
-        game->entities[*i].y = game->entities[*i + 1].y;
-        game->entities[*i].type = game->entities[*i + 1].type;
-        game->entities[*i].state = game->entities[*i + 1].state;
-        game->entities[*i].nextPos = game->entities[*i + 1].nextPos;
+        game->entities[j].x = game->entities[j + 1].x;
+        game->entities[j].y = game->entities[j + 1].y;
+        game->entities[j].type = game->entities[j + 1].type;
+        game->entities[j].state = game->entities[j + 1].state;
+        game->entities[j].nextPos = game->entities[j + 1].nextPos;
     }
     *i--;
 }
@@ -94,7 +94,7 @@ char MainLoop(Gameplay_T* game)
         for(i = 0; i < game->nb_entities; i++)
             game->display_buffer[game->entities[i].x][game->entities[i].y] = game->entities[i].type;
 
-        //Draw board to screen
+        //Clear screen and Draw board
         PushDisplayBuffer(game);
 
         //exit if game state was updated by a collision (ex. player destroyed)
