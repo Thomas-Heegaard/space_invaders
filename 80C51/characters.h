@@ -4,6 +4,6 @@
 #define PLAYER_CHAR 'O'
 #define PROJECTILE_CHAR 'I'
 #define EXPLOSION_CHAR 'X'
-#define EMPTY_CHAR ' '
+#define EMPTY_CHAR 0x00
 
 #endif //CHARACTERS_H

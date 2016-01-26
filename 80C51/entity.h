@@ -12,13 +12,13 @@ typedef struct Entity
     int y;
     char type; //appearance
     char state;
-    void (*nextPos)(struct Entity*) reentrant;
+    void (*nextPos)(struct Entity*) __reentrant;
 }Entity;
 
-char InitPlayer(Entity* player, int x, int y);
+void InitPlayer(Entity* player, int x, int y);
 
-char InitProjectileUp(Entity* projectile, int x, int y);
+void InitProjectileUp(Entity* projectile, int x, int y);
 
-char InitProjectileDown(Entity* projectile, int x, int y);
+void InitProjectileDown(Entity* projectile, int x, int y);
 
 #endif //ENTITY_H

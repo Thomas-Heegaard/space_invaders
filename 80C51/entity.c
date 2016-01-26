@@ -3,10 +3,10 @@
 
 void PlayerNextPos(Entity* self)
 {
-
+    //todo
 }
 
-char InitPlayer(Entity* player, int x, int y)
+void InitPlayer(Entity* player, int x, int y)
 {
     player->x = x;
     player->y = y;
@@ -19,7 +19,7 @@ void ProjectileUpNextPos(Entity* self)
     self->y--;
 }
 
-char InitProjectileUp(Entity* projectile, int x, int y)
+void InitProjectileUp(Entity* projectile, int x, int y)
 {
     projectile->x = x;
     projectile->y = y;
@@ -32,7 +32,7 @@ void ProjectileDownNextPos(Entity* self)
     self->y++;
 }
 
-char InitProjectileDown(Entity* projectile, int x, int y)
+void InitProjectileDown(Entity* projectile, int x, int y)
 {
     projectile->x = x;
     projectile->y = y;

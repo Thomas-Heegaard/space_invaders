@@ -59,11 +59,13 @@ void CheckBounds(int* i, Gameplay_T* game)
 }
 
 
-char Main_Loop(Gameplay_T* game)
+char MainLoop(Gameplay_T* game)
 {
-    int i, j;
+    int i;
     while(1)
     {
+        game->turn++;
+
         //Clear display buffer
         ClearDisplayBuffer(game);
 
@@ -86,20 +88,7 @@ char Main_Loop(Gameplay_T* game)
             if(game->entities[i].state == ENT_STATE_COLLIDED)
                 game->entities[i].type == EXPLOSION_CHAR;
 
-//Insert gamplay logic here
-//    Add enemies
-//    Check victory/failure conditions
-//    etc...
-
-        //player fires automaticaly
-        if(game->next_shot == 0 && game->state == 0)
-        {
-            game->nb_entities++;
-            InitProjectileUp(game->entities + game->nb_entities, game->entities[game->player].x, game->entities[game->player].y - 1);
-            game->next_shot = game->shot_delay;
-        }
-        else
-            game->next_shot--;
+        game->LevelLogic(game);
 
         //Fill display buffer
         for(i = 0; i < game->nb_entities; i++)
