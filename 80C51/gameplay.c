@@ -7,9 +7,10 @@ Gameplay_T* game = 0x00;
 void CheckCollision(char i)
 {
     char j;
-    for(j = i + 1; j < game->nb_entities; j++)
+    for(j = 0; j < game->nb_entities; j++)
     {
-        if(game->entities[j].x == game->entities[i].x ||
+        if(i != j && 
+            game->entities[j].x == game->entities[i].x &&
             game->entities[j].y == game->entities[i].y)
             {
                 game->entities[i].Collision(game->entities + i);
@@ -72,7 +73,7 @@ char MainLoop()
 
         //Remove destroyed entities
         for(i = 0; i < game->nb_entities; i++)
-            if(game->entities[i].health == 0)
+            if(game->entities[i].health <= 0)
                 RemoveEntity(&i);
 
 
@@ -96,6 +97,5 @@ char MainLoop()
         //exit if game over
         if(game->state != 0)
             return game->state;
-
     }
 }

@@ -2,7 +2,7 @@
 #define CHARACTERS_H
 
 #define PLAYER_CHAR 'O'
-#define PROJECTILE_CHAR ':'
+#define PROJECTILE_CHAR 'I'
 #define EXPLOSION_CHAR 'X'
 #define EMPTY_CHAR 0x00
 

@@ -1,5 +1,6 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
+#include "rand.h"
 #include "entity.h"
 #include "settings.h"
 

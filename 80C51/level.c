@@ -10,17 +10,19 @@ void StandardInit()
     game->state = GAME_RUNNING;
     game->turn = 0;
     game->player = 0;
-    InitPlayer(game->entities, SCENE_WIDTH/2, SCENE_HEIGHT - 2);
+    InitPlayer(game->entities, SCENE_WIDTH/2, SCENE_HEIGHT - 1);
 }
 
 // ============= TEST LEVEL ============================================================================
 
 void TestLevel()
 {
-    if(game->nb_entities == MAX_ENTITIES - 1)
-        return;
-    InitProjectileUp(game->entities + game->nb_entities, game->turn % SCENE_WIDTH, SCENE_HEIGHT - 1);
-    game->nb_entities++;
+    if(game->nb_entities < 10)
+    {
+        InitSimpleTarget(game->entities + game->nb_entities, rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
+        //InitMovingTarget(game->entities + game->nb_entities, rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
+        game->nb_entities++;
+    }
 }
 
 void InitTestLevel()
@@ -28,6 +30,8 @@ void InitTestLevel()
     char i = 0;
     StandardInit();
     RemoveEntity(&i);
+    InitTestPlayer(game->entities + game->nb_entities, SCENE_WIDTH/2, SCENE_HEIGHT - 2);
+    game->nb_entities++;
     game->LevelLogic = TestLevel;
 }
 
