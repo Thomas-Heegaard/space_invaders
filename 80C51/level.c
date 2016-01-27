@@ -20,8 +20,9 @@ void TestLevel()
     if(game->nb_entities < 10)
     {
         InitSimpleTarget(game->entities + game->nb_entities, rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
-        //InitMovingTarget(game->entities + game->nb_entities, rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
         game->nb_entities++;
+        //InitMovingTarget(game->entities + game->nb_entities, rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
+        //game->nb_entities++;
     }
 }
 

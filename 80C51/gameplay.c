@@ -24,7 +24,7 @@ void RemoveEntity(char* i)
 {
     char j, k;
     game->nb_entities--;
-    for(j = *i; j < game->nb_entities; j++)
+    for(j = *i; j < game->nb_entities; j++) // slide all following entities to the left
     {
         game->entities[j].x = game->entities[j + 1].x;
         game->entities[j].y = game->entities[j + 1].y;
