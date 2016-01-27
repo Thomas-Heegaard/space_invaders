@@ -1,6 +1,14 @@
 #include <mcs51reg.h>
 #include "level.h"
 #include "stdio-t6963c.h"
+
+#ifndef TEST
+
+// final prog
+
+#else
+#include <stdio.h>
+
 void main()
 {
     char ret;
@@ -14,3 +22,5 @@ void main()
 
     while(1);
 }
+
+#endif
