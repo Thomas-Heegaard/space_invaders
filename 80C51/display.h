@@ -4,8 +4,8 @@
 #include "settings.h"
 #include "gameplay.h"
 
-void ClearDisplayBuffer(Gameplay_T* game);
+void ClearDisplayBuffer();
 
-void PushDisplayBuffer(Gameplay_T* game);
+void PushDisplayBuffer();
 
 #endif //DISPLAY_H

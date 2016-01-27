@@ -1,21 +1,10 @@
 #include "level.h"
+#include "entity.h"
+#include "level.h"
 
 // ============= USEFULL FUNCTIONS =====================================================================
 
-void PlayerAutoshoot(Gameplay_T* game)
-{
-        //player fires automaticaly
-        if(game->next_shot == 0 && game->state == 0)
-        {
-            game->nb_entities++;
-            InitProjectileUp(game->entities + game->nb_entities, game->entities[game->player].x, game->entities[game->player].y - 1);
-            game->next_shot = game->shot_delay;
-        }
-        else
-            game->next_shot--;
-}
-
-void StandardInit(Gameplay_T* game)
+void StandardInit()
 {
     game->nb_entities = 1;
     game->state = GAME_RUNNING;
@@ -26,7 +15,7 @@ void StandardInit(Gameplay_T* game)
 
 // ============= TEST LEVEL ============================================================================
 
-void TestLevel(Gameplay_T* game)
+void TestLevel()
 {
     if(game->nb_entities == MAX_ENTITIES - 1)
         return;
@@ -34,24 +23,25 @@ void TestLevel(Gameplay_T* game)
     game->nb_entities++;
 }
 
-void InitTestLevel(Gameplay_T* game)
+void InitTestLevel()
 {
-    int i = 0;
-    StandardInit(game);
-    RemoveEntity(&i, game);
+    char i = 0;
+    StandardInit();
+    RemoveEntity(&i);
     game->LevelLogic = TestLevel;
 }
 
 // ============= LEVEL 1 ===============================================================================
 
-void Level1(Gameplay_T* game)
+void Level1()
 {
-    PlayerAutoshoot(game);
     //Add enemies etc...
 }
 
-void InitLevel1(Gameplay_T* game)
+void InitLevel1()
 {
-    StandardInit(game);
+    StandardInit();
     game->LevelLogic = Level1;
+    game->entities[game->player].health = 3;
+    game->entities[game->player].extra[1] = 10; //firing delay
 }

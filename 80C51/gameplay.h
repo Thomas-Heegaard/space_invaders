@@ -12,22 +12,24 @@ typedef struct Gameplay_T
     char display_buffer[SCENE_WIDTH][SCENE_HEIGHT];
     
     Entity entities[MAX_ENTITIES];
-    int nb_entities;
+    char nb_entities;
 
     char state;
     
     int turn;
 
-    int player; //index of player in entities
+    char player; //index of player in entities
     int shot_delay;
     int next_shot;
 
-    void (*LevelLogic)(struct Gameplay_T* game) __reentrant;
+    void (*LevelLogic)(void) __reentrant;
 
 }Gameplay_T;
 
-char MainLoop(Gameplay_T* game);
+extern Gameplay_T* game;
 
-void RemoveEntity(int* i, Gameplay_T* game); // used in level.c
+char MainLoop();
+
+void RemoveEntity(char* i); // used in level.c
 
 #endif //GAMEPLAY_H

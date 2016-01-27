@@ -4,12 +4,13 @@
 void main()
 {
     char ret;
-    Gameplay_T game;
+    Gameplay_T current_game; // MOVE THIS TO XDATA
+    game = &current_game;
 
 	STDIO_initialize();
 
-    InitTestLevel(&game);
-    ret = MainLoop(&game);
+    InitTestLevel();
+    ret = MainLoop();
 
     while(1);
 }

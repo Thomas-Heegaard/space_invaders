@@ -1,9 +1,6 @@
-#ifndef LEVEL_H
-#define LEVEL_H
+#include "entity.h"
 #include "gameplay.h"
 
-void InitTestLevel(Gameplay_T* game);
+void InitTestLevel();
 
-void InitLevel1(Gameplay_T* game);
-
-#endif //LEVEL_H
+void InitLevel1();

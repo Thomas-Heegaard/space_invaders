@@ -1,54 +1,55 @@
 #include "gameplay.h"
 #include "display.h"
 
-//Checks if the entity at indice i is in collision with any other entity. Applies no logic, only sets the state for collided entities
-void CheckCollision(int i, Gameplay_T* game)
+Gameplay_T* game = 0x00;
+
+//Checks if the entity at indice i is in collision with any other entity
+void CheckCollision(char i)
 {
-    int j;
+    char j;
     for(j = i + 1; j < game->nb_entities; j++)
     {
         if(game->entities[j].x == game->entities[i].x ||
             game->entities[j].y == game->entities[i].y)
-        {
-            if(game->entities[j].state == ENT_STATE_OK)
-                game->entities[j].state = ENT_STATE_COLLIDED;
-            if(game->entities[i].state == ENT_STATE_OK)
-                game->entities[i].state = ENT_STATE_COLLIDED;
-        }
-
+            {
+                game->entities[i].Collision(game->entities + i);
+                game->entities[j].Collision(game->entities + j);
+            }
     }
 }
 
 //Remove the entity at indice i. i is a pointer, as it needs to be decremented to avoid skipping an entity when iterating over the array
-void RemoveEntity(int* i, Gameplay_T* game)
+void RemoveEntity(char* i)
 {
-    int j;
+    char j, k;
     game->nb_entities--;
     for(j = *i; j < game->nb_entities; j++)
     {
         game->entities[j].x = game->entities[j + 1].x;
         game->entities[j].y = game->entities[j + 1].y;
         game->entities[j].type = game->entities[j + 1].type;
-        game->entities[j].state = game->entities[j + 1].state;
-        game->entities[j].nextPos = game->entities[j + 1].nextPos;
+        for(k = 0; k < EXTRA_DATA; k++)
+            game->entities[j].extra[k] = game->entities[j + 1].extra[k];
+        game->entities[j].Update = game->entities[j + 1].Update;
+        game->entities[j].Collision = game->entities[j + 1].Collision;
     }
     *i--;
 }
 
 
-//Checks if the entity at indice i is out of bounds AND APPLIES GAME LOGIC IF THIS IS THE CASE. i is a pointer to allow removal of the entity if need be
-void CheckBounds(int* i, Gameplay_T* game)
+//Checks if the entity at indice i is out of bounds. i is a pointer to allow removal of the entity if need be
+void CheckBounds(char* i)
 {
     if(game->entities[*i].y < 0)
     {
-        RemoveEntity(i, game);
+        RemoveEntity(i);
         return;
     }
 
     if(game->entities[*i].y >= SCENE_HEIGHT)
     {
         game->entities[*i].y = SCENE_HEIGHT - 1;
-        game->entities[*i].type = EXPLOSION_CHAR;
+        game->entities[*i].Collision(game->entities + *i); //Collision if hits the ground
     }
 
     if(game->entities[*i].x < 0)
@@ -59,45 +60,40 @@ void CheckBounds(int* i, Gameplay_T* game)
 }
 
 
-char MainLoop(Gameplay_T* game)
+char MainLoop()
 {
-    int i;
+    char i;
     while(1)
     {
         game->turn++;
 
         //Clear display buffer
-        ClearDisplayBuffer(game);
+        ClearDisplayBuffer();
 
         //Remove destroyed entities
         for(i = 0; i < game->nb_entities; i++)
-            if(game->entities[i].type == EXPLOSION_CHAR)
-                RemoveEntity(&i, game);
+            if(game->entities[i].health == 0)
+                RemoveEntity(&i);
 
 
-        //Update positions and check for collisions / Out of bounds
+        //Update entities and check for collisions / Out of bounds
         for(i = 0; i < game->nb_entities; i++)
         {
-            game->entities[i].nextPos(game->entities + i);
-            CheckCollision(i, game);
-            CheckBounds(&i, game);
+            game->entities[i].Update(game->entities + i);
+            CheckCollision(i);
+            CheckBounds(&i);
         }
 
-        game->LevelLogic(game);
-
-        //Handle remaining collisions (player and bunker collisions should be handle in level logic)
-        for(i = 0; i < game->nb_entities; i++)
-            if(game->entities[i].state == ENT_STATE_COLLIDED)
-                game->entities[i].type == EXPLOSION_CHAR;
+        game->LevelLogic();
 
         //Fill display buffer
         for(i = 0; i < game->nb_entities; i++)
             game->display_buffer[game->entities[i].x][game->entities[i].y] = game->entities[i].type;
 
         //Clear screen and Draw board
-        PushDisplayBuffer(game);
+        PushDisplayBuffer();
 
-        //exit if game state was updated by a collision (ex. player destroyed)
+        //exit if game over
         if(game->state != 0)
             return game->state;
 
