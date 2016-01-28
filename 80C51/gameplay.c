@@ -29,6 +29,7 @@ void RemoveEntity(char* i)
         game->entities[j].x = game->entities[j + 1].x;
         game->entities[j].y = game->entities[j + 1].y;
         game->entities[j].type = game->entities[j + 1].type;
+        game->entities[j].health = game->entities[j + 1].health;
         for(k = 0; k < EXTRA_DATA; k++)
             game->entities[j].extra[k] = game->entities[j + 1].extra[k];
         game->entities[j].Update = game->entities[j + 1].Update;
