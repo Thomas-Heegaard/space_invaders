@@ -17,11 +17,10 @@ void StandardInit()
 
 void TestLevel()
 {
-    if(game->nb_entities < 10)
-    {
+    if(game->nb_entities < MAX_ENTITIES)
         AddSimpleTarget(rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
-        //AddMovingTarget(rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
-    }
+    if(game->nb_entities < MAX_ENTITIES)
+        AddMovingTarget(rand()%SCENE_WIDTH, rand()%(SCENE_HEIGHT - 3));
 }
 
 void InitTestLevel()

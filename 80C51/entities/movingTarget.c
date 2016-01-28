@@ -23,6 +23,8 @@ void MovingTargetCollision(Entity* self)
 void AddMovingTarget(char x, char y)
 {
     Entity* self = AddEntity();
+    if(self == NULL)
+        return;
     self->x = x;
     self->y = y;
     self->type = 'M';

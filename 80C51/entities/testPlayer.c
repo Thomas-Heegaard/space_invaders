@@ -36,6 +36,8 @@ void TestPlayerCollision(Entity* self)
 void AddTestPlayer(char x, char y)
 {
     Entity* player = AddEntity();
+    if(player == NULL)
+        return;
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;

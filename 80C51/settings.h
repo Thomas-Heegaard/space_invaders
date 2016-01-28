@@ -1,6 +1,8 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#define NULL 0x00
+
 #define SCENE_HEIGHT 16
 #define SCENE_WIDTH 30
 

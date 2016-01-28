@@ -29,6 +29,8 @@ void PlayerCollision(Entity* self)
 void AddPlayer(char x, char y)
 {
     Entity* player = AddEntity();
+    if(player == NULL)
+        return;
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;

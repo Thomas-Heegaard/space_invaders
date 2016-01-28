@@ -17,6 +17,8 @@ void ProjectileUpCollision(Entity* self)
 void AddProjectileUp(char x, char y)
 {
     Entity* projectile = AddEntity();
+    if(projectile == NULL)
+        return;
     projectile->x = x;
     projectile->y = y;
     projectile->type = PROJECTILE_CHAR;

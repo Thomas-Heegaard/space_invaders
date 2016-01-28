@@ -1,7 +1,7 @@
 #include "gameplay.h"
 #include "display.h"
 
-Gameplay_T* game = 0x00;
+Gameplay_T* game = NULL;
 
 //Checks if the entity at indice i is in collision with any other entity
 void CheckCollision(char i)
