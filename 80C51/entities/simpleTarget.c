@@ -18,7 +18,7 @@ void SimpleTargetCollision(Entity* self)
 
 void AddSimpleTarget(char x, char y)
 {
-    self = AddEntity();
+    Entity* self = AddEntity();
     self->x = x;
     self->y = y;
     self->type = 'T';
