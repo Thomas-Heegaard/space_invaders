@@ -11,9 +11,8 @@ void SimpleTargetUpdate(Entity* self)
 
 void SimpleTargetCollision(Entity* self)
 {
-    self->health--;
-    if(self->health <= 0)
-        self->type = EXPLOSION_CHAR;
+    self->type = EXPLOSION_CHAR;
+    self->flags |= DESTROYED_F;
 }
 
 void AddSimpleTarget(char x, char y)
@@ -24,7 +23,6 @@ void AddSimpleTarget(char x, char y)
     self->x = x;
     self->y = y;
     self->type = 'T';
-    self->health = 1;
     self->Update = &SimpleTargetUpdate;
     self->Collision = &SimpleTargetCollision;
 }

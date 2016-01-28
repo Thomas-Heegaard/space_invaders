@@ -2,8 +2,9 @@
 #include "../gameplay.h"
 #include "../settings.h"
 
-#define NEXT_SHOT 0
-#define SHOT_DELAY 1
+#define HEALTH 0
+#define NEXT_SHOT 1
+#define SHOT_DELAY 2
 
 void PlayerUpdate(Entity* self)
 {
@@ -21,9 +22,12 @@ void PlayerUpdate(Entity* self)
 
 void PlayerCollision(Entity* self)
 {
-    self->health--;
-    if(self->health <= 0)
+    self->extra[HEALTH]--;
+    if(self->extra[HEALTH] <= 0)
+    {
         self->type = EXPLOSION_CHAR;
+        self->flags |= DESTROYED_F;
+    }
 }
 
 void AddPlayer(char x, char y)
@@ -34,7 +38,7 @@ void AddPlayer(char x, char y)
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;
-    player->health = 1;
+    player->extra[HEALTH] = 1;
     player->extra[NEXT_SHOT] = 1;
     player->extra[SHOT_DELAY] = 1;
     player->Update = &PlayerUpdate;

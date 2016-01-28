@@ -11,7 +11,8 @@ void ProjectileDownUpdate(Entity* self)
 void ProjectileDownCollision(Entity* self)
 {
     self->type = EXPLOSION_CHAR;
-    self->health = 0;
+    self->flags |= DESTROYED_F;
+    game->nb_projectiles--;
 }
 
 void AddProjectileDown(char x, char y)
@@ -22,7 +23,8 @@ void AddProjectileDown(char x, char y)
     projectile->x = x;
     projectile->y = y;
     projectile->type = PROJECTILE_CHAR;
-    projectile->health = 1;
+    projectile->flags |= PROJECTILE_F;
     projectile->Update = &ProjectileDownUpdate;
     projectile->Collision = &ProjectileDownCollision;
+    game->nb_projectiles++;
 }

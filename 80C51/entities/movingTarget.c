@@ -15,9 +15,8 @@ void MovingTargetUpdate(Entity* self)
 
 void MovingTargetCollision(Entity* self)
 {
-    self->health--;
-    if(self->health <= 0)
-        self->type = EXPLOSION_CHAR;
+    self->flags |= DESTROYED_F;
+    self->type = EXPLOSION_CHAR;
 }
 
 void AddMovingTarget(char x, char y)
@@ -28,7 +27,6 @@ void AddMovingTarget(char x, char y)
     self->x = x;
     self->y = y;
     self->type = 'M';
-    self->health = 1;
     self->Update = &MovingTargetUpdate;
     self->Collision = &MovingTargetCollision;
 }

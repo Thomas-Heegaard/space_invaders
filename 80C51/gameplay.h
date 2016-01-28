@@ -14,14 +14,15 @@ typedef struct Gameplay_T
     
     Entity entities[MAX_ENTITIES];
     char nb_entities;
+    char nb_projectiles;
 
     char state;
     
     int turn;
 
     char player; //index of player in entities
-    int shot_delay;
-    int next_shot;
+
+    char extra[GAMEPLAY_DATA]; //to be used in levels for counters etc...
 
     void (*LevelLogic)(void) __reentrant;
 

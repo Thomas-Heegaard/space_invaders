@@ -29,8 +29,8 @@ void RemoveEntity(char* i)
         game->entities[j].x = game->entities[j + 1].x;
         game->entities[j].y = game->entities[j + 1].y;
         game->entities[j].type = game->entities[j + 1].type;
-        game->entities[j].health = game->entities[j + 1].health;
-        for(k = 0; k < EXTRA_DATA; k++)
+        game->entities[j].flags = game->entities[j + 1].flags;
+        for(k = 0; k < ENTITY_DATA; k++)
             game->entities[j].extra[k] = game->entities[j + 1].extra[k];
         game->entities[j].Update = game->entities[j + 1].Update;
         game->entities[j].Collision = game->entities[j + 1].Collision;
@@ -44,6 +44,8 @@ void CheckBounds(char* i)
 {
     if(game->entities[*i].y < 0)
     {
+        if(game->entities[*i].flags & PROJECTILE_F)
+            game->nb_projectiles--;
         RemoveEntity(i);
         return;
     }
@@ -74,7 +76,7 @@ char MainLoop()
 
         //Remove destroyed entities
         for(i = 0; i < game->nb_entities; i++)
-            if(game->entities[i].health <= 0)
+            if(game->entities[i].flags & DESTROYED_F)
                 RemoveEntity(&i);
 
 

@@ -7,6 +7,7 @@ Entity* AddEntity()
     if(game->nb_entities == MAX_ENTITIES)
         return ret;
     ret = game->entities + game->nb_entities;
+    ret->flags = 0;
     game->nb_entities++;
     return ret;
 }

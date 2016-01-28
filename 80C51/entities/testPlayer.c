@@ -28,9 +28,8 @@ void TestPlayerUpdate(Entity* self)
 
 void TestPlayerCollision(Entity* self)
 {
-    self->health--;
-    if(self->health <= 0)
-        self->type = EXPLOSION_CHAR;
+    self->flags |= DESTROYED_F;
+    self->type = EXPLOSION_CHAR;
 }
 
 void AddTestPlayer(char x, char y)
@@ -41,7 +40,6 @@ void AddTestPlayer(char x, char y)
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;
-    player->health = 1;
     player->extra[NEXT_SHOT] = 1;
     player->extra[SHOT_DELAY] = 2;
     player->extra[DIRECTION] = 1;

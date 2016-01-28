@@ -2,16 +2,18 @@
 #define ENTITY_H
 
 #include "characters.h"
+#include "settings.h"
 
-#define EXTRA_DATA 3
+#define DESTROYED_F 1
+#define PROJECTILE_F 2
 
 typedef struct Entity
 {
     char x;
     char y;
     char type; //appearance
-    char health;
-    char extra[EXTRA_DATA]; //can be used for firing countdown, variable speed, movement counters, etc...
+    char flags;
+    char extra[ENTITY_DATA]; //can be used for firing countdown, variable speed, movement counters, etc...
     void (*Update)(struct Entity* self) __reentrant;
     void (*Collision)(struct Entity* self) __reentrant;
 }Entity;
