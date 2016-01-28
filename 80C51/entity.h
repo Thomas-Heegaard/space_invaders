@@ -16,16 +16,18 @@ typedef struct Entity
     void (*Collision)(struct Entity* self) __reentrant;
 }Entity;
 
-void InitPlayer(Entity* player, char x, char y);
+Entity* AddEntity(); //only for use by the following functions
 
-void InitTestPlayer(Entity* player, char x, char y);
+void AddPlayer(char x, char y);
 
-void InitProjectileUp(Entity* projectile, char x, char y);
+void AddTestPlayer(char x, char y);
 
-void InitProjectileDown(Entity* projectile, char x, char y);
+void AddProjectileUp(char x, char y);
 
-void InitSimpleTarget(Entity* self, char x, char y);
+void AddProjectileDown(char x, char y);
 
-void InitMovingTarget(Entity* self, char x, char y);
+void AddSimpleTarget(char x, char y);
+
+void AddMovingTarget(char x, char y);
 
 #endif //ENTITY_H

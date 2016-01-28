@@ -16,8 +16,9 @@ void SimpleTargetCollision(Entity* self)
         self->type = EXPLOSION_CHAR;
 }
 
-void InitSimpleTarget(Entity* self, char x, char y)
+void AddSimpleTarget(char x, char y)
 {
+    self = AddEntity();
     self->x = x;
     self->y = y;
     self->type = 'T';

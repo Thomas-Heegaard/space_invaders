@@ -14,8 +14,9 @@ void ProjectileDownCollision(Entity* self)
     self->health = 0;
 }
 
-void InitProjectileDown(Entity* projectile, char x, char y)
+void AddProjectileDown(char x, char y)
 {
+    Entity* projectile = AddEntity();
     projectile->x = x;
     projectile->y = y;
     projectile->type = PROJECTILE_CHAR;

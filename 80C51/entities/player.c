@@ -15,10 +15,7 @@ void PlayerUpdate(Entity* self)
     {
         self->extra[NEXT_SHOT] = self->extra[SHOT_DELAY];
         if(game->nb_entities < MAX_ENTITIES)
-        {
-            InitProjectileUp(game->entities + game->nb_entities, self->x, self->y - 1);
-            game->nb_entities++;
-        }
+            AddProjectileUp(self->x, self->y - 1);
     }
 }
 
@@ -29,8 +26,9 @@ void PlayerCollision(Entity* self)
         self->type = EXPLOSION_CHAR;
 }
 
-void InitPlayer(Entity* player, char x, char y)
+void AddPlayer(char x, char y)
 {
+    Entity* player = AddEntity();
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;

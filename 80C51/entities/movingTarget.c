@@ -20,8 +20,9 @@ void MovingTargetCollision(Entity* self)
         self->type = EXPLOSION_CHAR;
 }
 
-void InitMovingTarget(Entity* self, char x, char y)
+void AddMovingTarget(char x, char y)
 {
+    Entity* self = AddEntity();
     self->x = x;
     self->y = y;
     self->type = 'M';

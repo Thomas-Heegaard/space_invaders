@@ -14,8 +14,9 @@ void ProjectileUpCollision(Entity* self)
     self->health = 0;
 }
 
-void InitProjectileUp(Entity* projectile, char x, char y)
+void AddProjectileUp(char x, char y)
 {
+    projectile = AddEntity();
     projectile->x = x;
     projectile->y = y;
     projectile->type = PROJECTILE_CHAR;
