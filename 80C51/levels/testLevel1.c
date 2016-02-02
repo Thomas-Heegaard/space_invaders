@@ -10,6 +10,8 @@
 void TestLevelOne()
 {
     char i;
+    if(game->nb_entities == 0)
+        game->state = GAME_LOST;
     if(game->extra[ENEMY_ROWS_LEFT] >= 0)
         if(game->extra[ADD_ROW] == 1)
         {

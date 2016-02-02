@@ -3,6 +3,7 @@
 #include "rand.h"
 #include "entity.h"
 #include "settings.h"
+#include "timer.h"
 
 #define GAME_RUNNING 0
 #define GAME_WON 1
@@ -18,7 +19,8 @@ typedef struct Gameplay_T
 
     char state;
     
-    int turn;
+    unsigned int turn;
+    unsigned int next_turn_cycle;
 
     char player; //index of player in entities
 

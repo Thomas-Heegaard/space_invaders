@@ -1,6 +1,7 @@
 #include "gameplay.h"
 #include "display.h"
 
+
 Gameplay_T* game = NULL;
 
 //Checks if the entity at indice i is in collision with any other entity
@@ -70,6 +71,7 @@ char MainLoop()
     while(1)
     {
         game->turn++;
+        game->next_turn_cycle = cycles + CYCLES_PER_TURN;
 
         //Clear display buffer
         ClearDisplayBuffer();
@@ -93,6 +95,9 @@ char MainLoop()
         //Fill display buffer
         for(i = 0; i < game->nb_entities; i++)
             game->display_buffer[game->entities[i].x][game->entities[i].y] = game->entities[i].type;
+
+        //manage framerate (if we ever get it fast enough to need it...)
+        //while(cycles < game->next_turn_cycle);
 
         //Clear screen and Draw board
         PushDisplayBuffer();
