@@ -32,4 +32,6 @@ void AddSimpleTarget(char x, char y);
 
 void AddMovingTarget(char x, char y);
 
+void AddEnemyOne(char x, char y, char next_dir);
+
 #endif //ENTITY_H

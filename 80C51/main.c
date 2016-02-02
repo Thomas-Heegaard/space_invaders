@@ -17,7 +17,8 @@ void main()
 
 	STDIO_initialize();
 
-    InitTestLevel();
+    //InitTestLevel();
+    InitTestLevelOne();
     ret = MainLoop();
 
     while(1);
