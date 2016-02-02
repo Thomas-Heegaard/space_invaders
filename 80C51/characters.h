@@ -5,5 +5,6 @@
 #define PROJECTILE_CHAR 'I'
 #define EXPLOSION_CHAR 'X'
 #define EMPTY_CHAR 0x00
+#define UNMODIFIED_CHAR 0x01
 
 #endif //CHARACTERS_H
