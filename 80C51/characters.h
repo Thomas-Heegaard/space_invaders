@@ -1,10 +1,34 @@
 #ifndef CHARACTERS_H
 #define CHARACTERS_H
 
-#define PLAYER_CHAR 'O'
-#define PROJECTILE_CHAR 'I'
-#define EXPLOSION_CHAR 'X'
-#define EMPTY_CHAR 0x00
-#define UNMODIFIED_CHAR 0x01
+	#ifdef TEST
+		#define CHAR_BASE 0x80
+	#else
+		#define CHAR_BASE 0x80
+	#endif
+	
+	#define EMPTY_CHAR 0x00
+
+	#define OBSTACLE_A (0x21 + CHAR_BASE)
+	#define OBSTACLE_B (0x22 + CHAR_BASE)
+	#define OBSTACLE_C (0x23 + CHAR_BASE)
+	#define OBSTACLE_D (0x24 + CHAR_BASE)
+	#define OBSTACLE_E (0x25 + CHAR_BASE)
+	#define OBSTACLE_F (0x26 + CHAR_BASE)
+	#define OBSTACLE_G (0x27 + CHAR_BASE)
+	#define OBSTACLE_H (0x28 + CHAR_BASE)
+
+	#define PLAYER_CHAR (0x11 + CHAR_BASE)
+	#define PROJECTILE_CHAR (0x12 + CHAR_BASE)
+	#define EXPLOSION_CHAR (0x13 + CHAR_BASE)
+	#define ALIENLVL1_CHAR (0x14 + CHAR_BASE)
+	#define ALIENLVL2_CHAR (0x15 + CHAR_BASE)
+	#define ALIENLVL3_CHAR (0x16 + CHAR_BASE)
+	#define SHIELDTL_CHAR (0x17 + CHAR_BASE)
+	#define SHIELDTR_CHAR (0x18 + CHAR_BASE)
+	#define SHIELDBL_CHAR (0x19 + CHAR_BASE)
+	#define SHIELDBR_CHAR (0x20 + CHAR_BASE)
+
+	#define UNMODIFIED_CHAR 0x01
 
 #endif //CHARACTERS_H

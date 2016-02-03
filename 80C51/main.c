@@ -2,6 +2,7 @@
 #include "timer.h"
 #include "level.h"
 #include "stdio-t6963c.h"
+#include "characters.h"
 
 #ifndef TEST
 
@@ -17,6 +18,8 @@ void main()
     game = &current_game;
 
     InitTimer();
+	CHAR_initialize();
+	
 
 	STDIO_initialize();
 

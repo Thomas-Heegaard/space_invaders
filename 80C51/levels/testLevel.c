@@ -11,9 +11,11 @@ void TestLevel()
 
 void InitTestLevel()
 {
+	
     char i = 0;
     StandardInit();
     RemoveEntity(&i);
     AddTestPlayer(SCENE_WIDTH/2, SCENE_HEIGHT - 2);
     game->LevelLogic = TestLevel;
+	
 }

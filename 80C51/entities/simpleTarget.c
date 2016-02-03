@@ -22,7 +22,7 @@ void AddSimpleTarget(char x, char y)
         return;
     self->x = x;
     self->y = y;
-    self->type = 'T';
+    self->type = ALIENLVL3_CHAR;
     self->Update = &SimpleTargetUpdate;
     self->Collision = &SimpleTargetCollision;
 }

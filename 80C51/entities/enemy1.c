@@ -1,6 +1,7 @@
 #include "../entity.h"
 #include "../gameplay.h"
 #include "../settings.h"
+#include "characters.h"
 
 #define NEXT_DIR 0
 
@@ -30,6 +31,8 @@ void EnemyOneUpdate(Entity* self)
             self->extra[NEXT_DIR] = DOWN1;
             break;
     }
+	if(rand() % 5 == 0)
+		AddProjectileDown(self->x, self->y+1);
 }
 
 void EnemyOneCollision(Entity* self)
@@ -45,7 +48,7 @@ void AddEnemyOne(char x, char y, char next_dir)
         return;
     self->x = x;
     self->y = y;
-    self->type = 'E';
+    self->type = ALIENLVL1_CHAR;
     self->Update = &EnemyOneUpdate;
     self->Collision = &EnemyOneCollision;
     self->extra[NEXT_DIR] = next_dir;

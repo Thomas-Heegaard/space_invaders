@@ -27,12 +27,12 @@ Set Timer0 for 16-bit timer mode.  The
 timer counts to 65535, overflows, and
 generates an interrupt.
 --------------------------------------*/
-
-    TMOD = (TMOD & 0xF0) | 0x01;  /* Set T/C0 Mode */
-    ET0 = 1;                      /* Enable Timer 0 Interrupts */
-    TR0 = 1;                      /* Start Timer 0 Running */
-    EA = 1;                       /* Global Interrupt Enable */
+//    TMOD = (TMOD & 0xF0) | 0x01;  /* Set T/C0 Mode */
+//    ET0 = 1;                      /* Enable Timer 0 Interrupts */
+//    TR0 = 1;                      /* Start Timer 0 Running */
+//    EA = 1;                       /* Global Interrupt Enable */
 
     cycles = 0;                     /* Init time*/
-}
+
+	}
 

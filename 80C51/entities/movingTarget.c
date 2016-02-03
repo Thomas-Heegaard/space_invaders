@@ -26,7 +26,7 @@ void AddMovingTarget(char x, char y)
         return;
     self->x = x;
     self->y = y;
-    self->type = 'M';
+    self->type = ALIENLVL2_CHAR;
     self->Update = &MovingTargetUpdate;
     self->Collision = &MovingTargetCollision;
 }
