@@ -1,7 +1,7 @@
 #include "../entity.h"
 #include "../gameplay.h"
 #include "../settings.h"
-#include "characters.h"
+#include "../characters.h"
 
 #define NEXT_DIR 0
 
@@ -49,6 +49,8 @@ void AddEnemyOne(char x, char y, char next_dir)
     self->x = x;
     self->y = y;
     self->type = ALIENLVL1_CHAR;
+    self->next_update = 1;
+    self->update_delay = 5;
     self->Update = &EnemyOneUpdate;
     self->Collision = &EnemyOneCollision;
     self->extra[NEXT_DIR] = next_dir;

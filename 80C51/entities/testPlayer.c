@@ -40,6 +40,9 @@ void AddTestPlayer(char x, char y)
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;
+    player->next_update = 1;
+    player->update_delay = 5;
+    player->flags |= COLLIDER_F;
     player->extra[NEXT_SHOT] = 1;
     player->extra[SHOT_DELAY] = 2;
     player->extra[DIRECTION] = 1;

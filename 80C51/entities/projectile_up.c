@@ -24,6 +24,9 @@ void AddProjectileUp(char x, char y)
     projectile->y = y;
     projectile->type = PROJECTILE_CHAR;
     projectile->flags |= PROJECTILE_F;
+    projectile->flags |= COLLIDER_F;
+    projectile->next_update = 1;
+    projectile->update_delay = 1;
     projectile->Update = &ProjectileUpUpdate;
     projectile->Collision = &ProjectileUpCollision;
     game->nb_projectiles++;

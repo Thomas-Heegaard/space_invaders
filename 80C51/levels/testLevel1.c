@@ -13,7 +13,9 @@ void TestLevelOne()
     if(game->nb_entities == 0)
         game->state = GAME_LOST;
     if(game->extra[ENEMY_ROWS_LEFT] >= 0)
-        if(game->extra[ADD_ROW] == 1)
+    {
+        game->extra[ADD_ROW]--;
+        if(game->extra[ADD_ROW] == 0)
         {
            for(i = 0; i < SCENE_WIDTH; i++)
               if(i % 2 == 0)
@@ -24,9 +26,9 @@ void TestLevelOne()
                game->extra[CURRENT_DIR] = 0;
            game->extra[ADD_ROW] = 0;
            game->extra[ENEMY_ROWS_LEFT]--;
+           game->extra[ADD_ROW] = 10;
         }
-        else
-           game->extra[ADD_ROW] = 1;
+    }
 }
 
 void InitTestLevelOne()

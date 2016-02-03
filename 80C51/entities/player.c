@@ -38,6 +38,9 @@ void AddPlayer(char x, char y)
     player->x = x;
     player->y = y;
     player->type = PLAYER_CHAR;
+    player->next_update = 0;
+    player->update_delay = 5;
+    player->flags |= COLLIDER_F;
     player->extra[HEALTH] = 1;
     player->extra[NEXT_SHOT] = 1;
     player->extra[SHOT_DELAY] = 1;

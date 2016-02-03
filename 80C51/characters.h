@@ -31,4 +31,6 @@
 
 	#define UNMODIFIED_CHAR 0x01
 
+    void CHAR_initialize();
+
 #endif //CHARACTERS_H

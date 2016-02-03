@@ -8,34 +8,48 @@ Gameplay_T* game = NULL;
 void CheckCollision(char i)
 {
     char j;
-    for(j = 0; j < game->nb_entities; j++)
-    {
-        if(i != j && 
-            game->entities[j].x == game->entities[i].x &&
-            game->entities[j].y == game->entities[i].y)
-            {
-                game->entities[i].Collision(game->entities + i);
-                game->entities[j].Collision(game->entities + j);
-            }
-    }
+    //if(game->entities[i].flags & COLLIDER_F)
+        for(j = 0; j < game->nb_entities; j++)
+        {
+            if(i != j && 
+                game->entities[j].x == game->entities[i].x &&
+                game->entities[j].y == game->entities[i].y)
+                {
+                    game->entities[i].Collision(game->entities + i);
+                    game->entities[j].Collision(game->entities + j);
+                }
+        }
 }
 
 //Remove the entity at indice i. i is a pointer, as it needs to be decremented to avoid skipping an entity when iterating over the array
 void RemoveEntity(char* i)
 {
-    char j, k;
-    game->nb_entities--;
+    char k;
+    /*char j, k;
     for(j = *i; j < game->nb_entities; j++) // slide all following entities to the left
     {
         game->entities[j].x = game->entities[j + 1].x;
         game->entities[j].y = game->entities[j + 1].y;
         game->entities[j].type = game->entities[j + 1].type;
+        game->entities[j].next_update = game->entities[j + 1].next_update;
+        game->entities[j].update_delay = game->entities[j + 1].update_delay;
         game->entities[j].flags = game->entities[j + 1].flags;
         for(k = 0; k < ENTITY_DATA; k++)
             game->entities[j].extra[k] = game->entities[j + 1].extra[k];
         game->entities[j].Update = game->entities[j + 1].Update;
         game->entities[j].Collision = game->entities[j + 1].Collision;
-    }
+    }*/
+    game->nb_entities--;
+    game->entities[*i].x = game->entities[game->nb_entities].x;
+    game->entities[*i].y = game->entities[game->nb_entities].y;
+    game->entities[*i].type = game->entities[game->nb_entities].type;
+    game->entities[*i].next_update = game->entities[game->nb_entities].next_update;
+    game->entities[*i].update_delay = game->entities[game->nb_entities].update_delay;
+    game->entities[*i].flags = game->entities[game->nb_entities].flags;
+    for(k = 0; k < ENTITY_DATA; k++)
+        game->entities[*i].extra[k] = game->entities[game->nb_entities].extra[k];
+    game->entities[*i].Update = game->entities[game->nb_entities].Update;
+    game->entities[*i].Collision = game->entities[game->nb_entities].Collision;
     *i--;
 }
 
@@ -81,14 +95,19 @@ char MainLoop()
             if(game->entities[i].flags & DESTROYED_F)
                 RemoveEntity(&i);
 
-
         //Update entities and check for collisions / Out of bounds
         for(i = 0; i < game->nb_entities; i++)
         {
-            game->entities[i].Update(game->entities + i);
-            CheckCollision(i);
-            CheckBounds(&i);
+            game->entities[i].next_update--;
+            if(game->entities[i].next_update <= 0)
+            {
+                game->entities[i].next_update = game->entities[i].update_delay;
+                game->entities[i].Update(game->entities + i);
+                CheckCollision(i);
+                CheckBounds(&i);
+            }
         }
+
 
         game->LevelLogic();
 

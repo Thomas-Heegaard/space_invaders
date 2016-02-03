@@ -6,6 +6,7 @@
 
 #define DESTROYED_F 1
 #define PROJECTILE_F 2
+#define COLLIDER_F 4
 
 typedef struct Entity
 {
@@ -13,6 +14,8 @@ typedef struct Entity
     char y;
     char type; //appearance
     char flags;
+    char next_update;
+    char update_delay;
     char extra[ENTITY_DATA]; //can be used for firing countdown, variable speed, movement counters, etc...
     void (*Update)(struct Entity* self) __reentrant;
     void (*Collision)(struct Entity* self) __reentrant;
