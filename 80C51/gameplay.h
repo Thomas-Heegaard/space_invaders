@@ -36,4 +36,7 @@ char MainLoop();
 
 void RemoveEntity(char* i); // used in level.c
 
+#ifdef TEST
+extern Gamepay_T* ref_game;
+#endif //TEST
 #endif //GAMEPLAY_H

@@ -13,6 +13,9 @@
 
 void main()
 {
+#ifdef TEST
+    Test();
+#endif //TEST
     char ret;
     Gameplay_T current_game; // MOVE THIS TO XDATA
     game = &current_game;

@@ -37,4 +37,8 @@ void AddMovingTarget(char x, char y);
 
 void AddEnemyOne(char x, char y, char next_dir);
 
+
+#ifdef TEST
+char compare_entities(Entity* ent1, Entity* ent2);
+#endif //TEST
 #endif //ENTITY_H

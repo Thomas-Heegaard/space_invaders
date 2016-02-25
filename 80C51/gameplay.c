@@ -25,20 +25,6 @@ void CheckCollision(char i)
 void RemoveEntity(char* i)
 {
     char k;
-    /*char j, k;
-    for(j = *i; j < game->nb_entities; j++) // slide all following entities to the left
-    {
-        game->entities[j].x = game->entities[j + 1].x;
-        game->entities[j].y = game->entities[j + 1].y;
-        game->entities[j].type = game->entities[j + 1].type;
-        game->entities[j].next_update = game->entities[j + 1].next_update;
-        game->entities[j].update_delay = game->entities[j + 1].update_delay;
-        game->entities[j].flags = game->entities[j + 1].flags;
-        for(k = 0; k < ENTITY_DATA; k++)
-            game->entities[j].extra[k] = game->entities[j + 1].extra[k];
-        game->entities[j].Update = game->entities[j + 1].Update;
-        game->entities[j].Collision = game->entities[j + 1].Collision;
-    }*/
     game->nb_entities--;
     game->entities[*i].x = game->entities[game->nb_entities].x;
     game->entities[*i].y = game->entities[game->nb_entities].y;
@@ -124,5 +110,9 @@ char MainLoop()
         //exit if game over
         if(game->state != 0)
             return game->state;
+
+        #ifdef TEST
+        return game->state;
+        #endif //TEST
     }
 }
