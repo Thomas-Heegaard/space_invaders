@@ -3,6 +3,8 @@
 
 void InitTestLevel();
 
+void InitRandomLevel();
+
 void InitTestLevelOne();
 
 void InitLevel1();

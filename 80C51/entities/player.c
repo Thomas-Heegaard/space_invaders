@@ -11,8 +11,8 @@ void PlayerUpdate(Entity* self)
 {
     switch(KEYBOARD_readArrows())
     {
-        case ARROW_LEFT: self->x--;
-        case ARROW_RIGHT: self->x++;
+        case ARROW_LEFT: self->x--; break;
+        case ARROW_RIGHT: self->x++; break;
     }
 
     

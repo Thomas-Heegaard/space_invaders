@@ -23,7 +23,8 @@ void main()
 #ifdef TEST
     Test();
 #endif //TEST
-    InitLevel1();
+    //InitLevel1();
+    InitRandomLevel();
     ret = MainLoop();
     InitTestLevel();
     ret = MainLoop();

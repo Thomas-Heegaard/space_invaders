@@ -7,7 +7,7 @@
 #define SCENE_HEIGHT 16
 #define SCENE_WIDTH 30
 
-#define MAX_ENTITIES 50
+#define MAX_ENTITIES 20
 #define RESERVED_PROJECTILES 10
 #define MAX_PROJECTIES 10
 #endif //not TEST
