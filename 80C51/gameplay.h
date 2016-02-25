@@ -31,12 +31,12 @@ typedef struct Gameplay_T
 }Gameplay_T;
 
 extern Gameplay_T* game;
+#ifdef TEST
+extern Gameplay_T* ref_game;
+#endif //TEST
 
 char MainLoop();
 
 void RemoveEntity(char* i); // used in level.c
 
-#ifdef TEST
-extern Gamepay_T* ref_game;
-#endif //TEST
 #endif //GAMEPLAY_H

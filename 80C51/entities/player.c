@@ -1,6 +1,7 @@
 #include "../entity.h"
 #include "../gameplay.h"
 #include "../settings.h"
+#include "../keyboard.h"
 
 #define HEALTH 0
 #define NEXT_SHOT 1
@@ -8,9 +9,14 @@
 
 void PlayerUpdate(Entity* self)
 {
-    //todo: movement
+    switch(KEYBOARD_readArrows())
+    {
+        case ARROW_LEFT: self->x--;
+        case ARROW_RIGHT: self->x++;
+    }
+
     
-    //player auto shoots
+  //player auto shoots
     self->extra[NEXT_SHOT]--;
     if(self->extra[NEXT_SHOT] <= 0)
     {

@@ -3,6 +3,9 @@
 
 
 Gameplay_T* game = NULL;
+#ifdef TEST
+Gameplay_T* ref_game = NULL;
+#endif //TEST
 
 //Checks if the entity at indice i is in collision with any other entity
 void CheckCollision(char i)

@@ -8,7 +8,7 @@
 
 void TestPlayerUpdate(Entity* self)
 {
-    //movement
+  //movement
     self->x += self->extra[DIRECTION];
 
     if(self->x >= SCENE_WIDTH)
@@ -16,7 +16,7 @@ void TestPlayerUpdate(Entity* self)
     if(self->x <= 0)
         self->extra[DIRECTION] = 1;
     
-    //player auto shoots
+  //player auto shoots
     self->extra[NEXT_SHOT]--;
     if(self->extra[NEXT_SHOT] <= 0)
     {

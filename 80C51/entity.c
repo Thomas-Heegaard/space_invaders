@@ -29,7 +29,7 @@ char compare_entities(Entity* ent1, Entity* ent2)
     if(ent1->update_delay != ent2->update_delay)
         return 1;
     for(i = 0; i < ENTITY_DATA; i++)
-        if(ent1->extra[i] != ent1->extra[i])
+        if(ent1->extra[i] != ent2->extra[i])
             return 1;
     return 0;
 }

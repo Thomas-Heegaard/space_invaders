@@ -3,30 +3,27 @@
 #include "level.h"
 #include "stdio-t6963c.h"
 #include "characters.h"
+#include "keyboard.h"
+#include "test.h"
 
-#ifndef TEST
-
-// final prog
-
-#else
 #include <stdio.h>
 
 void main()
 {
-#ifdef TEST
-    Test();
-#endif //TEST
     char ret;
     Gameplay_T current_game; // MOVE THIS TO XDATA
     game = &current_game;
 
+    keyboard = (unsigned char __xdata *) 0x3000;
+
     InitTimer();
 	CHAR_initialize();
-	
-
 	STDIO_initialize();
 
-    InitTestLevelOne();
+#ifdef TEST
+    Test();
+#endif //TEST
+    InitLevel1();
     ret = MainLoop();
     InitTestLevel();
     ret = MainLoop();
@@ -34,4 +31,3 @@ void main()
     while(1);
 }
 
-#endif
