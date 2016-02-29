@@ -29,7 +29,7 @@ void main()
         printf("\rYOU WIN!\r");
     else
         printf("\rYOU LOSE!\r");
-    for(ret = 0; ret < 10000; ret++);
+    for(ret = 0; ret < 100; ret++);
     InitRandomLevel();
     ret = MainLoop();
 

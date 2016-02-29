@@ -26,7 +26,7 @@ void Level1()
         }
     }
     if(game->nb_entities - game->nb_projectiles == 1)
-        if(game->entities[0].type == PLAYER_CHAR)
+        if(game->turn > 10)
             game->state = GAME_WON;
 }
 
