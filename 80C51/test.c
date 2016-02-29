@@ -91,8 +91,12 @@ void Test()
     ref_game = game;
     game = tmp;
     errors = TestFull();
+    printf("Step 1 completed with %d errors\r", errors);
 
-    printf("Tests completed with %d errors\n", errors);
+    GameStep();
+    RefStep();
+
+    printf("Tests completed with %d errors\r", errors);
 
     while(1);
 }

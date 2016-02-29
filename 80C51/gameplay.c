@@ -108,7 +108,9 @@ char MainLoop()
         //while(cycles < game->next_turn_cycle);
 
         //Clear screen and Draw board
+        #ifndef TEST
         PushDisplayBuffer();
+        #endif //not TEST
 
         //exit if game over
         if(game->state != 0)
