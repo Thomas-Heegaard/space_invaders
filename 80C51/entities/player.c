@@ -2,6 +2,7 @@
 #include "../gameplay.h"
 #include "../settings.h"
 #include "../keyboard.h"
+#include <stdio.h>
 
 #define HEALTH 0
 #define NEXT_SHOT 1
@@ -33,6 +34,7 @@ void PlayerCollision(Entity* self)
     {
         self->type = EXPLOSION_CHAR;
         self->flags |= DESTROYED_F;
+        game->state = GAME_LOST;
     }
 }
 

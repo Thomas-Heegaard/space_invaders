@@ -23,10 +23,14 @@ void main()
 #ifdef TEST
     Test();
 #endif //TEST
-    //InitLevel1();
-    InitRandomLevel();
+    InitLevel1();
     ret = MainLoop();
-    InitTestLevel();
+    if(ret == GAME_WON)
+        printf("\rYOU WIN!\r");
+    else
+        printf("\rYOU LOSE!\r");
+    for(ret = 0; ret < 10000; ret++);
+    InitRandomLevel();
     ret = MainLoop();
 
     while(1);

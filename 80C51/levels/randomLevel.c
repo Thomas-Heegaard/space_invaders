@@ -11,8 +11,6 @@ void RandomLevel()
 
 void InitRandomLevel()
 {
-	
-    char i = 0;
     StandardInit();
     game->LevelLogic = RandomLevel;
 	
