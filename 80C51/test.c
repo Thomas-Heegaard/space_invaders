@@ -1,4 +1,5 @@
 #ifdef TEST
+#include <stdio.h>
 #include "gameplay.h"
 #include "level.h"
 #include "settings.h"
@@ -18,7 +19,7 @@ void TestPositions(int* errors)
             if(TestPosition(i, j))
             {
                 *errors++;
-                //print "Display error at (%d,%d)", i, j
+                printf("Display error at (%d,%d)", i, j);
             }
 }
 
@@ -28,24 +29,21 @@ void TestEntities(int* errors)
     if(game->nb_entities != ref_game->nb_entities)
     {
         *errors++;
-        //print "Diverging nb of entities (game: %d, reference: %d)", game->nb_entities, ref_game->nb_entities
+        printf("Diverging nb of entities (game: %d, reference: %d)", game->nb_entities, ref_game->nb_entities);
     }
     else
         for(i = 0; i < game->nb_entities; i++)
             if(compare_entities(game->entities + i, ref_game->entities + i))
                 {
                     *errors++;
-                    //print "Mismatched entities (%c and %c)", game->entities[i].type, ref_game->entities[i].type   
+                    printf("Mismatched entities (%c and %c)", game->entities[i].type, ref_game->entities[i].type);
                 } 
 }
 
 
-
-
-int TestFullStep()
+int TestFull()
 {
     int errors = 0;
-    MainLoop();
 
     TestPositions(&errors);
     TestEntities(&errors);
@@ -53,12 +51,12 @@ int TestFullStep()
     if(game->state != ref_game->state)
     {
         errors++;
-        //print "Mismatched game states (%s and %s)", game->state, ref_game->state
+        printf("Mismatched game states (%d and %d)", game->state, ref_game->state);
     }
     if(game->turn != ref_game->turn)
     {
         errors++;
-        //print "Mismatched game turns (%d and %d)", game->turn, ref_game->turn
+        printf("Mismatched game turns (%d and %d)", game->turn, ref_game->turn);
     }
 
     // not iplemented if(game->next_turn_cycle != ref_game->next_turn_cycle)
@@ -66,10 +64,24 @@ int TestFullStep()
     return errors;
 }
 
+void GameStep() //One go through the main loop for game
+{
+    MainLoop();
+}
+
+void RefStep() //One go through the main loop for the reference game
+{
+    Gameplay_T* tmp = game;
+    game = ref_game;
+    MainLoop();
+    game = tmp;
+}
+
 void Test()
 {
     Gameplay_T ref_object;
     Gameplay_T* tmp;
+    int errors;
     
     //Test Initialization
     InitTestLevelOne();
@@ -78,8 +90,9 @@ void Test()
     InitTestLevelOne();
     ref_game = game;
     game = tmp;
-    TestFullStep();
+    errors = TestFull();
 
+    printf("Tests completed with %d errors\n", errors);
 
     while(1);
 }
